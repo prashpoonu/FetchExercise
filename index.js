@@ -3,6 +3,7 @@ $(function() {
     $('input').val(3);
     $('button').on('click', event => {
         event.preventDefault();
+        $('#dogImageContainer').html('');
         fetchDogImages($('input').val());
     });
     function fetchDogImages(numberOfImages) {
@@ -21,12 +22,13 @@ $(function() {
        .then(responseData => displayDogImages(responseData));
     }
     function displayDogImages(responseData) {
+        console.log(responseData);
         if (responseData.status === 'success') {
             for (let i = 0; i < responseData.message.length; i++) {
                 $('#dogImageContainer').append(`<img src="${responseData.message[i]}">`);
             }
         }
-        console.log(responseData);
+        
     }
 });
 
